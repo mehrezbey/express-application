@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+<!-- Start HeadBlock -->
+{% block headblock%}
+<link rel="stylesheet" href="{{url_for('static',filename='styles/welcome_page_style.css')}}">
+{% endblock headblock%}
+<!-- End HeadBlock -->
+{% block bodyblock%}
+
+<!-- Start BodyBlock -->
+<div class="welcome-page">
+    <header class="p-3">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="{{url_for('home')}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <img src="{{url_for('static',filename='images/logo.png')}}" alt="Express Logo" width="120px">
+                </a>
+    
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="{{url_for('home')}}" class="nav-link px-2 fs-5 fw-bold  text-white active">Home</a></li>
+                    <li><a href="{{url_for('home')}}" class="nav-link px-2 fs-5 fw-bold text-white">About</a></li>
+                    <li><a href="{{url_for('home')}}" class="nav-link px-2 fs-5 fw-bold text-white">Contact</a></li>
+                    <li><a href="{{url_for('home')}}" class="nav-link px-2 fs-5 fw-bold text-white">Help</a></li>
+                </ul>
+        
+                <div class="text-end">
+                    <button type="button" class="btn btn-outline-light me-2 fs-5 fw-bold">Login</button>
+                    <button type="button" class="btn fs-5 fw-bold">Sign-up</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class=" welcome-page-content container col-xxl-8 px-4">
+        <div class="row flex-lg-row-reverse align-items-center justify-content-center g-5 ">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="{{url_for('static',filename='images/welcome-icon.png')}}" class="d-block mx-lg-auto img-fluid" alt="Welcome Icon" width="450" height="450" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3 text-white">Where you can Express to Impress!</h1>
+                <p class="lead text-white py-5 lh-lg">Express is the best platform to to create and share your thoughts, ideas, interests about movies and tv-shows to the world.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-center">
+                    <button type="button" class="btn btn-lg px-4 me-md-2 mb-3 mb-lg-0 text-white">Sign Up Today In Express</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock bodyblock%}
+<!-- EndBodyBlock -->

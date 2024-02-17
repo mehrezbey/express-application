@@ -1,0 +1,35 @@
+/* Start welcome page */
+.welcome-page{
+    background-color: var(--main-dark-color);
+    height: 100vh;
+    width: 100vw;
+    overflow-y: auto;
+}
+.welcome-page header .text-end button:first-child:hover {
+    color: var(--main-light-color);
+    transition: var(--main-transition);
+}
+.welcome-page header .text-end button:last-child {
+    border-color: var(--main-light-color);
+    color: var(--main-light-color);
+}
+.welcome-page header .text-end button:last-child:hover{
+    background-color: var(--main-light-color);
+    color: var(--sec-light-color);
+    transition: var(--main-transition);
+}
+.welcome-page header li a:hover{
+    text-shadow: var(--main-light-color) 0px 0px 10px;
+    transition: var(--main-transition);
+}
+.welcome-page .welcome-page-content button{
+    background-color: var(--main-light-color);
+    opacity: 0.9;
+    border-color: var(--main-light-color);
+}
+.welcome-page .welcome-page-content button:hover{
+    opacity: 1;
+    transition: var(--main-transition);
+}
+/* End welcome Page */
+

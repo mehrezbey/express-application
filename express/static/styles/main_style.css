@@ -1,0 +1,22 @@
+/* Start Global Rules & Variables */
+:root {
+    --main-dark-color:#222831;
+    --sec-dark-color:#393E46;
+    --main-light-color:#00aab3;
+    --sec-light-color:#EEEEEE;
+    --main-transition:0.3s;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    scroll-behavior: smooth;
+    font-family:cursive;
+    overflow-wrap: break-word;
+}
+.welcome-page header li a.active{
+    text-decoration: underline;
+}
+/* End Global Rules & Variables*/
+
+
