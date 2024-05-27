@@ -1,2 +1,2 @@
 run:
-	python3 express/express.py
+	python3 run.py
