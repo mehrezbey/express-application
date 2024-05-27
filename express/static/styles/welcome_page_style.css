@@ -5,15 +5,15 @@
     width: 100vw;
     overflow-y: auto;
 }
-.welcome-page header .text-end button:first-child:hover {
+.welcome-page header .text-end a:first-child:hover {
     color: var(--main-light-color);
     transition: var(--main-transition);
 }
-.welcome-page header .text-end button:last-child {
+.welcome-page header .text-end a:last-child {
     border-color: var(--main-light-color);
     color: var(--main-light-color);
 }
-.welcome-page header .text-end button:last-child:hover{
+.welcome-page header .text-end a:last-child:hover{
     background-color: var(--main-light-color);
     color: var(--sec-light-color);
     transition: var(--main-transition);
@@ -22,12 +22,12 @@
     text-shadow: var(--main-light-color) 0px 0px 10px;
     transition: var(--main-transition);
 }
-.welcome-page .welcome-page-content button{
+.welcome-page .welcome-page-content a{
     background-color: var(--main-light-color);
     opacity: 0.9;
     border-color: var(--main-light-color);
 }
-.welcome-page .welcome-page-content button:hover{
+.welcome-page .welcome-page-content a:hover{
     opacity: 1;
     transition: var(--main-transition);
 }
