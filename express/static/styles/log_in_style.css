@@ -1,0 +1,83 @@
+.log-in-page {
+    background-color: var(--main-dark-color);
+}
+.log-in-page .container {
+    background-color: var(--sec-light-color);
+    border-radius: 25px;
+    box-shadow: white 0 0 20px 0px;
+}
+.log-in-page .container .heading{
+  position: relative;
+}
+.log-in-page .container .heading::before{
+  content: "";
+  position: absolute;
+  width: 70px; 
+  height: 4px;
+  background-color: var(--main-light-color);
+  bottom: 0;
+  left: 0;
+}
+.log-in-page .row> .col>input {
+    /* width: 100%; */
+    font-size: 18px !important;
+    border: 0px !important;
+    border-bottom-left-radius: 0px!important;
+    border-bottom-right-radius: 0px!important;
+    border-bottom-left-radius: 0px!important;
+    border-bottom-right-radius: 0px!important;
+    background-color: var(--sec-light-color) !important;
+    border-bottom: 1px solid var(--main-dark-color) !important;
+}
+.log-in-page .row input:focus{
+    box-shadow: 0px 0px 10px 0px #00aab375;
+    border: 0px !important;
+    border-bottom: 1px solid var(--main-dark-color) !important;   
+}
+.log-in-page .row label{
+    font-weight: bold;
+    font-size: 18px;
+}
+.log-in-page  .submit-button {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    background-color: var(--main-dark-color) !important;
+    color: var(--sec-light-color) !important;
+    font-size: 20px;
+    opacity: 0.9;
+    transition: var(--main-transition);
+    -webkit-transition: var(--main-transition);
+    -moz-transition: var(--main-transition);
+    -ms-transition: var(--main-transition);
+    -o-transition: var(--main-transition);
+    cursor: pointer;
+}
+.log-in-page  .submit-button:hover {
+    opacity: 1;
+}
+.log-in-page  .to-sign {
+    margin: 0 auto 5px;
+    display: block;
+    width: fit-content;
+    font-size: 18px;
+}
+.log-in-page  .to-sign a {
+    color: var(--main-dark-color);
+    font-weight: bold;
+}
+.log-in-page form .row{
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.log-in-page form .row i{
+    width: fit-content;
+}
+.log-in-page .remember-me{
+    display: flex;
+    align-items: center;
+}
