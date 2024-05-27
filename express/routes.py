@@ -1,7 +1,8 @@
-from flask import Flask,render_template,url_for, flash, redirect
-from forms import SignupForm,LoginForm
-app = Flask(__name__)
-app.config['SECRET_KEY'] = '449233446c37a493077f0ecf53afa01f7cb4f2ea3b1f717c6d4d1b3ad72f430c'
+from flask import render_template,url_for, flash, redirect
+from express import app
+from express.forms import SignupForm,LoginForm
+from express.models import User, Post
+
 
 @app.route("/")
 @app.route("/home")
@@ -27,6 +28,3 @@ def log_in():
             flash(f"Please check your email and password!","danger")
 
     return render_template("log_in.html",form = form,title = "Log In")
-
-if __name__ == "__main__":
-    app.run(debug=True)
