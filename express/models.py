@@ -1,10 +1,15 @@
 from dataclasses import dataclass, field
 from datetime import date, datetime
-from express import db 
+from express import db ,login_manager
+from flask_login import UserMixin
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 @dataclass
-class User(db.Model):
+class User(db.Model,UserMixin):
     __table_name__= "user"
     
     id:int= field(init=False, repr=False)
@@ -25,9 +30,9 @@ class User(db.Model):
     birthday = db.Column(db.DateTime , nullable = True)
     posts = db.relationship('Post', backref='author', lazy=True)
 
-    # def add_user(self):
-    #     db.session.add(self)
-    #     db.session.commit()
+    def add_user(self):
+        db.session.add(self)
+        db.session.commit()
 
 @dataclass
 class Post(db.Model):
@@ -42,4 +47,3 @@ class Post(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-# db.create_all()
