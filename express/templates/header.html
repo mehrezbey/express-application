@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+<!-- Start HeadBlock -->
+{% block headblock%}
+<link rel="stylesheet" href="{{url_for('static',filename='styles/header_style.css')}}">
+
+  {% block head_afterheader %}
+
+  {% endblock head_afterheader%}
+
+{% endblock headblock%}
+<!-- End HeadBlock -->
+
+<!-- Start BodyBlock -->
+{% block bodyblock%}
+<header class="mb-3 border-bottom">
+    <div class="container d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+        <a href="{{url_for('home')}}" class="d-flex align-items-center text-white text-decoration-none" style="width: 100px;">
+            <img src="{{url_for('static',filename='images/logo.png')}}" alt="Express Logo" width="100px">
+        </a>
+
+      <div class="d-flex align-items-center">
+        <form class="w-100 me-3" role="search">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
+
+        <div class="flex-shrink-0 dropdown">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{image}}" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="#">New post...</a></li>
+            <li><a class="dropdown-item" href="#">Account</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Contact</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{url_for('logout')}}">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+{% block afterheader %}
+{% endblock afterheader%}
+{% endblock bodyblock%}
+<!-- EndBodyBlock -->

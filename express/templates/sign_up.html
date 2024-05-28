@@ -116,7 +116,7 @@
                             {% if form.birthday.errors %}
                                 {{form.birthday(class="form-control is-invalid")}}
                                 <div class="invalid-feedback">
-                                    {% for error in form.confirm_password.errors %}
+                                    {% for error in form.birthday.errors %}
                                         <span>{{ error }}</span>
                                     {% endfor %}
                                 </div>

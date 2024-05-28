@@ -1,0 +1,6 @@
+header{
+    background-color: var(--main-dark-color);;
+}
+.form-control:focus{
+    box-shadow: 0 0 10px 0 var(--main-light-color);
+}
