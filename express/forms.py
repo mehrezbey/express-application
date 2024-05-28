@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField,StringField,EmailField,DateField,SubmitField,BooleanField
+from wtforms import PasswordField,StringField,EmailField,DateField,SubmitField,BooleanField,FileField
 from wtforms.validators import DataRequired,Length,Email,EqualTo,ValidationError
-
+from flask_wtf.file import FileField,FileAllowed
+from flask_login import current_user
 from express.models import User
+
 class SignupForm(FlaskForm):
     first_name = StringField(label="Fist Name",validators=[DataRequired(),Length(min=3,max=20)],name="first-name")
     last_name = StringField(label="Last Name",validators=[DataRequired(),Length(min=3,max=20)],name="last-name")
@@ -23,5 +25,19 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
+class UpdateAccountForm(FlaskForm):
+    first_name = StringField(label='First name',validators=[DataRequired(), Length(min=2, max=20)], name="first-name")
+    last_name = StringField(label='Last name',validators=[DataRequired(), Length(min=2, max=20)], name="last-name")
+    email = EmailField('Email',validators=[DataRequired(), Email()], name="email")
+    picture = FileField("Profile Picture",validators=[FileAllowed(['jpg','png'])])
+    birthday  = DateField('Birthday', validators=[DataRequired()],name="birthday",format="%Y-%m-%d")
+
+    submit = SubmitField('Update')
+
+    def validate_email(self, email):
+        if email.data != current_user.email:
+            user = User.query.filter_by(email=email.data).first()
+            if user:
+                raise ValidationError('That email is taken. Please choose a different one.')
 
 
