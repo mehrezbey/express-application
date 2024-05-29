@@ -2,6 +2,7 @@ from flask import render_template,url_for, flash, redirect , request
 from express import app,bcrypt,db
 from express.forms import SignupForm,LoginForm, UpdateAccountForm
 from express.models import User, Post
+from express.utils.profile_picture_utils import save_picture
 from flask_login import login_user , current_user , logout_user , login_required
 
 @app.route("/")
@@ -50,13 +51,15 @@ def account():
     image = url_for('static',filename='images/profile_pictures/'+ current_user.image_file)
     form = UpdateAccountForm()
     if(form.validate_on_submit()):
+        if(form.picture.data):
+            picture_file = save_picture(form.picture.data)
+            current_user.image_file = picture_file
         current_user.firstname = form.first_name.data
         current_user.lastname = form.last_name.data
         current_user.email = form.email.data
         current_user.birthday = form.birthday.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
-        print("ok")
         return redirect(url_for('account'))
     elif request.method == 'GET':
         form.first_name.data = current_user.firstname

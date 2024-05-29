@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="{{image}}" alt="Admin" class="rounded-circle" width="150">
+                            <img src="{{image}}" alt="Admin" class="rounded-circle" style="width: 150px;height: 150px;">
                             <div class="mt-3">
                                 <h4>{{current_user.firstname}} {{current_user.lastname}}</h4>
                                 <p class="text-secondary mb-1">{{current_user.email}}</p>
@@ -137,7 +137,6 @@
                                     {{ form.picture.label }}
                                 </div>
                                 <div class="col-sm-9">
-                                    {{form.picture(class="form-control-file")}}
                                     {% if form.picture.errors %}
                                         {{form.picture(class="form-control is-invalid")}}
                                         <div class="invalid-feedback">
@@ -145,6 +144,8 @@
                                                 <span>{{ error }}</span>
                                             {% endfor %}
                                         </div>
+                                    {% else %}
+                                        {{form.picture(class="form-control-file")}}
                                     {% endif %}  
                                 </div>
                             </div>
