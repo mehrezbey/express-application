@@ -1,0 +1,80 @@
+{% extends "header.html" %}
+
+
+{% block head_afterheader %}
+<link rel="stylesheet" href="{{url_for('static',filename='styles/account_style.css')}}">
+
+{% endblock head_afterheader%}
+<!-- Part After Header -->
+{% block afterheader %}
+<div class="container">
+    <div class="main-body">
+        <div class="row gutters-sm">
+            <div class="col-md-8 m-auto">
+                <div class="card mb-3">
+                    <div class="card-body pt-5">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }}">
+                                    {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        <h4 class="fw-bold m-auto pt-3 py-5 text-center" style="color: var(--main-light-color);">What is New, {{current_user.firstname}} ?</h4>
+                        <form action="" method="post" novalidate enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    {{form.title.label(class="form-control-label")}}
+                                </div>
+                                <div class="col-sm-9">
+                                    {% if form.title.errors %}
+                                        {{form.title(placeholder="Enter your post title",class="form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.title.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                        {{form.title(placeholder="Enter your post title",class="form-control")}}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row align-items-center ">
+                                <div class="col">
+                                    {{form.content.label(class="form-control-label")}}
+                                </div>
+                                <div class="col-sm-9">
+                                    {% if form.content.errors %}
+                                        {{form.content(placeholder="Enter your post content",class="form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.content.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                        {{form.content(placeholder="Enter your post content",class="form-control")}}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    {{form.submit(class="btn submit-button")}}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock afterheader%}
+<!-- Part After Header -->
