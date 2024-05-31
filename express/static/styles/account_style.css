@@ -1,7 +1,7 @@
 body{
     color: #1a202c;
     text-align: left;
-    background-color: #e2e8f0;    
+    background-color: var(--main-background-light-color);    
 }
 .main-body {
     padding: 15px;

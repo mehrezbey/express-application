@@ -22,7 +22,11 @@
                                 {% endfor %}
                             {% endif %}
                         {% endwith %}
-                        <h4 class="fw-bold m-auto pt-3 py-5 text-center" style="color: var(--main-light-color);">What is New, {{current_user.firstname}} ?</h4>
+                        {%if context == create %}
+                            <h4 class="fw-bold m-auto pt-3 py-5 text-center" style="color: var(--main-light-color);">What is New, {{current_user.firstname}} ?</h4>
+                        {% else%}
+                            <h4 class="fw-bold m-auto pt-3 py-5 text-center" style="color: var(--main-light-color);">Edit Your Post, {{current_user.firstname}} !</h4>
+                        {% endif%}
                         <form action="" method="post" novalidate enctype="multipart/form-data">
                             {{ form.hidden_tag() }}
 

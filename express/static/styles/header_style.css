@@ -1,6 +1,13 @@
 header{
-    background-color: var(--main-dark-color);;
+    background-color: var(--main-dark-color);
+    position: sticky;
+    top: 0;
+    right: 0;
+    z-index: 99;
 }
 .form-control:focus{
     box-shadow: 0 0 10px 0 var(--main-light-color);
+}
+.dropdown-toggle::after{
+    border-top-color: var(--main-light-color);
 }
