@@ -1,6 +1,6 @@
 from flask import render_template,url_for, flash, redirect , request
 from express import app,bcrypt,db
-from express.forms import SignupForm,LoginForm, UpdateAccountForm
+from express.forms import SignupForm,LoginForm, UpdateAccountForm,CreatePostForm
 from express.models import User, Post
 from express.utils.profile_picture_utils import save_picture
 from flask_login import login_user , current_user , logout_user , login_required
@@ -69,6 +69,19 @@ def account():
 
 
     return render_template("account.html",title = "Account",image = image,form = form)
+
+@app.route("/post/create",methods=['GET','POST'])
+@login_required
+def create_post():
+    image = url_for('static',filename='images/profile_pictures/'+ current_user.image_file)
+    form = CreatePostForm()
+    if(form.validate_on_submit()):
+        newPost = Post(title = form.title.data,content = form.content.data, author = current_user)
+        newPost.create_post()
+        flash('Your post has been published!', 'success')
+        return redirect(url_for('home'))
+
+    return render_template("create_post.html",title = "New Post", form = form , image=image)
 
 
 
