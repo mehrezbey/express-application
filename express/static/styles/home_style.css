@@ -161,4 +161,7 @@ body{
     .timeline .timeline-time .time{
         font-size: 12px;
     }
+    .timeline .timeline-icon span{
+        display: none;
+    }
 }
