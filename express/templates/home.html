@@ -1,5 +1,112 @@
-{% extends "layout.html" %}
-{% block bodyblock%}
-<h1>Home</h1>
-{{current_user.email}}
-{% endblock bodyblock%}
+{% extends "header.html" %}
+
+
+{% block head_afterheader %}
+<link rel="stylesheet" href="{{url_for('static',filename='styles/home_style.css')}}">
+
+{% endblock head_afterheader%}
+<!-- Part After Header -->
+{% block afterheader %}
+<!-- <div class="container">
+    <div class="main-body">
+        <div class="row gutters-sm">
+            <div class="col-md-8 m-auto">
+                <div class="card mb-3">
+                    <div class="card-body pt-5">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }}">
+                                    {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="content" class="content content-full-width">
+                <!-- <div class="card mb-3"> -->
+                    <div class="card-body pt-3 m-auto" style="width: fit-content;">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }}">
+                                    {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                <!-- </div> -->
+                <div class="profile-content">
+                    <div class="tab-content">
+                            <ul class="timeline">
+                                {% for post in posts%}
+                                <li>
+                                    <div class="timeline-time">
+                                        <span class="date">{{post.date_posted.strftime('%Y/%m/%d') }}</span>
+                                        <span class="time">{{post.date_posted.strftime('%H:%M') }}</span>
+                                    </div>
+                                    <div class="timeline-icon">
+                                        <span href="">&nbsp;</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <a class="timeline-header" href="">
+                                            <span class="userimage rounded-circle "><img src="{{url_for('static',filename='images/profile_pictures/'+post.author.image_file)}}" alt="user image"></span>
+                                            <span class="username">{{post.author.firstname}} {{post.author.lastname}}</span>
+                                            <!-- <span class="pull-right text-muted">1,021,282 Views</span> -->
+                                        </a>
+                                        <div class="timeline-content my-4">
+                                            <h4 class="template-title fw-bold" style="color: var(--main-light-color); text-decoration: underline;">
+                                                {{post.title}}
+                                            </h4>
+                                            <br>
+                                            <p>{{post.content}}</p>
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <button type="button" class="btn" ><i class="fa fa-thumbs-up fa-fw fa-lg "></i> Like</button>
+                                            <button type="button" class="btn" ><i class="fa fa-thumbs-down fa-fw fa-lg "></i> Dislike</button>
+                                            {% if current_user == post.author %}
+                                                <a type="button" class="btn text-primary" href="{{url_for('edit_post',post_id = post.id)}}" ><i class="fa fa-edit fa-fw fa-lg "></i> Edit</a> 
+                                                <button type="button" class="btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa fa-trash fa-fw fa-lg "></i> Delete </button>
+                                            {% endif%}
+                                        </div>
+
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Post</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete this post?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <a type="button" class="btn btn-danger" href="{{url_for('delete_post',post_id = post.id)}}">Delete</a>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                <!-- end timeline-body -->
+                                </li>
+                                {% endfor %}
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock afterheader%}
+<!-- Part After Header -->
