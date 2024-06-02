@@ -10,8 +10,9 @@ from flask_login import login_user , current_user , logout_user , login_required
 def home():
     if(current_user.is_authenticated):
         image = url_for('static',filename='images/profile_pictures/'+ current_user.image_file)
-        posts = Post.query.order_by(Post.id.desc()).all()
-        print(posts)
+        page = request.args.get('page',default = 1,type = int)
+        # posts = Post.query.order_by(Post.id.desc()).all()
+        posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page,per_page = 5)
         return render_template('home.html' , title="Home", image = image, posts = posts)
     else : 
         return render_template("welcome_page.html")

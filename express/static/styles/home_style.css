@@ -165,3 +165,12 @@ body{
         display: none;
     }
 }
+
+.posts-pagination .active>.page-link, .page-link.active{
+    background-color: var(--main-light-color);
+    border-color:var(--main-light-color);
+    color: white;
+}
+.posts-pagination .page-link{
+    color: var(--main-light-color);
+}
