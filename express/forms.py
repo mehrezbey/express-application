@@ -41,7 +41,7 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError('That email is taken. Please choose a different one.')
 
 class CreatePostForm(FlaskForm):
-    title = StringField(label='Title',validators=[DataRequired(), Length(min=3, max=20)], name="title")
+    title = StringField(label='Title',validators=[DataRequired(), Length(min=3, max=100)], name="title")
     content = TextAreaField(label='Content',validators=[DataRequired()], name="content")
     submit = SubmitField('Publish')
 
