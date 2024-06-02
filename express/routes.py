@@ -117,6 +117,17 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('home'))
+
+@app.route("/user/<string:username>")
+@login_required
+def user_profile(username):
+    image = url_for('static',filename='images/profile_pictures/'+ current_user.image_file)
+    page = request.args.get('page',default = 1,type = int)
+    user = User.query.filter_by(firstname = username).first_or_404()
+    posts = Post.query.filter_by(author = user)\
+            .order_by(Post.date_posted.desc()).paginate(page=page,per_page = 5)
+    return render_template('user_profile.html' , title=username, image = image, posts = posts , user =user)
+
 # The 2023_c version is:
 # from <app_name> import app, db
 # app.app_context().push()

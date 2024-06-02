@@ -59,7 +59,7 @@
                                         <span href="">&nbsp;</span>
                                     </div>
                                     <div class="timeline-body">
-                                        <a class="timeline-header" href="">
+                                        <a class="timeline-header" href="{{url_for('user_profile',username = post.author.firstname)}}">
                                             <span class="userimage rounded-circle "><img src="{{url_for('static',filename='images/profile_pictures/'+post.author.image_file)}}" alt="user image"></span>
                                             <span class="username">{{post.author.firstname}} {{post.author.lastname}}</span>
                                             <!-- <span class="pull-right text-muted">1,021,282 Views</span> -->
