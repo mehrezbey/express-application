@@ -12,20 +12,20 @@
     <header class="p-3">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="{{url_for('home')}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <a href="{{url_for('main.home')}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                     <img src="{{url_for('static',filename='images/logo.png')}}" alt="Express Logo" width="120px">
                 </a>
     
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="{{url_for('home')}}" class="nav-link px-2 fs-5 fw-bold  text-white active">Home</a></li>
-                    <li><a href="{{url_for('home')}}" class="nav-link px-2 fs-5 fw-bold text-white">About</a></li>
-                    <li><a href="{{url_for('home')}}" class="nav-link px-2 fs-5 fw-bold text-white">Contact</a></li>
-                    <li><a href="{{url_for('home')}}" class="nav-link px-2 fs-5 fw-bold text-white">Help</a></li>
+                    <li><a href="{{url_for('main.home')}}" class="nav-link px-2 fs-5 fw-bold  text-white active">Home</a></li>
+                    <li><a href="{{url_for('main.home')}}" class="nav-link px-2 fs-5 fw-bold text-white">About</a></li>
+                    <li><a href="{{url_for('main.home')}}" class="nav-link px-2 fs-5 fw-bold text-white">Contact</a></li>
+                    <li><a href="{{url_for('main.home')}}" class="nav-link px-2 fs-5 fw-bold text-white">Help</a></li>
                 </ul>
         
                 <div class="text-end">
-                    <a type="button" href="{{url_for('log_in')}}" class="btn btn-outline-light me-2 fs-5 fw-bold">Login</a>
-                    <a type="button" href="{{url_for('sign_up')}}" class="btn fs-5 fw-bold">Sign-up</a>
+                    <a type="button" href="{{url_for('users.log_in')}}" class="btn btn-outline-light me-2 fs-5 fw-bold">Login</a>
+                    <a type="button" href="{{url_for('users.sign_up')}}" class="btn fs-5 fw-bold">Sign-up</a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                 <h1 class="display-5 fw-bold lh-1 mb-3 text-white">Where you can Express to Impress!</h1>
                 <p class="lead text-white py-5 lh-lg">Express is the best platform to to create and share your thoughts, ideas, interests about movies and tv-shows to the world.</p>
                 <div class="d-grid gap-2 d-md-flex justify-content-center">
-                    <a href="{{url_for('sign_up')}}" type="button" class="btn btn-lg px-4 me-md-2 mb-3 mb-lg-0 text-white">Sign Up Today In Express</a>
+                    <a href="{{url_for('users.sign_up')}}" type="button" class="btn btn-lg px-4 me-md-2 mb-3 mb-lg-0 text-white">Sign Up Today In Express</a>
                 </div>
             </div>
         </div>
