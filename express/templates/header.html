@@ -15,7 +15,7 @@
 {% block bodyblock%}
 <header class="mb-3 border-bottom">
     <div class="container d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
-        <a href="{{url_for('home')}}" class="d-flex align-items-center text-white text-decoration-none" style="width: 100px;">
+        <a href="{{url_for('main.home')}}" class="d-flex align-items-center text-white text-decoration-none" style="width: 100px;">
             <img src="{{url_for('static',filename='images/logo.png')}}" alt="Express Logo" width="100px">
         </a>
 
@@ -29,12 +29,12 @@
             <img src="{{image}}" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small shadow">
-            <li><a class="dropdown-item" href="{{url_for('create_post')}}">New post...</a></li>
-            <li><a class="dropdown-item" href="{{url_for('account')}}">Account</a></li>
+            <li><a class="dropdown-item" href="{{url_for('posts.create_post')}}">New post...</a></li>
+            <li><a class="dropdown-item" href="{{url_for('users.account')}}">Account</a></li>
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li><a class="dropdown-item" href="#">Contact</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{url_for('logout')}}">Logout</a></li>
+            <li><a class="dropdown-item" href="{{url_for('users.logout')}}">Logout</a></li>
           </ul>
         </div>
       </div>

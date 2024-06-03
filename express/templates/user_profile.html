@@ -81,7 +81,7 @@
                                 <ul class="pagination">
                                     {% if posts.page >1 %}
                                         <li class="page-item">
-                                            <a class="page-link" href="{{url_for('user_profile', page=posts.page-1, username = user.firstname)}}" aria-label="Previous">
+                                            <a class="page-link" href="{{url_for('users.user_profile', page=posts.page-1, username = user.firstname)}}" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         </li>
@@ -89,9 +89,9 @@
                                     {% for page_number in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
                                         {% if page_number %}
                                             {% if page_number == posts.page %}
-                                                <li class="page-item active "><a class="page-link" href="{{url_for('user_profile', page=page_number , username = user.firstname)}}">{{page_number}}</a></li>
+                                                <li class="page-item active "><a class="page-link" href="{{url_for('users.user_profile', page=page_number , username = user.firstname)}}">{{page_number}}</a></li>
                                             {% else %}
-                                                <li class="page-item"><a class="page-link" href="{{url_for('user_profile', page=page_number , username = user.firstname)}}">{{page_number}}</a></li>
+                                                <li class="page-item"><a class="page-link" href="{{url_for('users.user_profile', page=page_number , username = user.firstname)}}">{{page_number}}</a></li>
                                             {% endif%}    
                                         {% else %}
                                             <span class="d-inline-block mx-2">...</span>

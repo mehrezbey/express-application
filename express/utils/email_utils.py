@@ -70,13 +70,13 @@ def send_reset_password_email(user):
             <div class="email-body">
                 <p>Hi {user.firstname} {user.lastname},</p>
                 <p>We received a request to reset your password. Click the button below to reset it:</p>
-                <p><a class="button" href="{url_for('reset_password', token=token, _external=True)}">Reset Password</a></p>
+                <p><a class="button" href="{url_for('users.reset_password', token=token, _external=True)}">Reset Password</a></p>
                 <p>If you did not request a password reset, please ignore this email or let us know.</p>
                 <p>Thanks,<br>The Support Team</p>
             </div>
             <div class="email-footer">
                 <p>If you’re having trouble clicking the "Reset Password" button, copy and paste the URL below into your web browser:</p>
-                <p><a href="{url_for('reset_password', token=token, _external=True)}">{url_for('reset_password', token=token, _external=True)}</a></p>
+                <p><a href="{url_for('users.reset_password', token=token, _external=True)}">{url_for('users.reset_password', token=token, _external=True)}</a></p>
             </div>
         </div>
     </body>

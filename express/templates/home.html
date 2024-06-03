@@ -59,7 +59,7 @@
                                         <span href="">&nbsp;</span>
                                     </div>
                                     <div class="timeline-body">
-                                        <a class="timeline-header" href="{{url_for('user_profile',username = post.author.firstname)}}">
+                                        <a class="timeline-header" href="{{url_for('users.user_profile',username = post.author.firstname)}}">
                                             <span class="userimage rounded-circle "><img src="{{url_for('static',filename='images/profile_pictures/'+post.author.image_file)}}" alt="user image"></span>
                                             <span class="username">{{post.author.firstname}} {{post.author.lastname}}</span>
                                             <!-- <span class="pull-right text-muted">1,021,282 Views</span> -->
@@ -75,7 +75,7 @@
                                             <button type="button" class="btn" ><i class="fa fa-thumbs-up fa-fw fa-lg "></i> Like</button>
                                             <button type="button" class="btn" ><i class="fa fa-thumbs-down fa-fw fa-lg "></i> Dislike</button>
                                             {% if current_user == post.author %}
-                                                <a type="button" class="btn text-primary" href="{{url_for('edit_post',post_id = post.id)}}" ><i class="fa fa-edit fa-fw fa-lg "></i> Edit</a> 
+                                                <a type="button" class="btn text-primary" href="{{url_for('posts.edit_post',post_id = post.id)}}" ><i class="fa fa-edit fa-fw fa-lg "></i> Edit</a> 
                                                 <button type="button" class="btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa fa-trash fa-fw fa-lg "></i> Delete </button>
                                             {% endif%}
                                         </div>
@@ -92,7 +92,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <a type="button" class="btn btn-danger" href="{{url_for('delete_post',post_id = post.id)}}">Delete</a>
+                                                        <a type="button" class="btn btn-danger" href="{{url_for('posts.delete_post',post_id = post.id)}}">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,7 +107,7 @@
                         <ul class="pagination">
                             {% if posts.page >1 %}
                                 <li class="page-item">
-                                    <a class="page-link" href="{{url_for('home', page=posts.page-1)}}" aria-label="Previous">
+                                    <a class="page-link" href="{{url_for('main.home', page=posts.page-1)}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
@@ -115,9 +115,9 @@
                             {% for page_number in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
                                 {% if page_number %}
                                     {% if page_number == posts.page %}
-                                        <li class="page-item active "><a class="page-link" href="{{url_for('home', page=page_number)}}">{{page_number}}</a></li>
+                                        <li class="page-item active "><a class="page-link" href="{{url_for('main.home', page=page_number)}}">{{page_number}}</a></li>
                                     {% else %}
-                                        <li class="page-item"><a class="page-link" href="{{url_for('home', page=page_number)}}">{{page_number}}</a></li>
+                                        <li class="page-item"><a class="page-link" href="{{url_for('main.home', page=page_number)}}">{{page_number}}</a></li>
                                     {% endif%}    
                                 {% else %}
                                     <span class="d-inline-block mx-2">...</span>
@@ -125,7 +125,7 @@
                             {% endfor%}
                             {% if posts.page < posts.pages %}
                             <li class="page-item">
-                                <a class="page-link" href="{{url_for('home', page=posts.page+1)}}" aria-label="Next">
+                                <a class="page-link" href="{{url_for('main.home', page=posts.page+1)}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>

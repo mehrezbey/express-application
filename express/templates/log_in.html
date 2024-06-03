@@ -10,7 +10,7 @@
 <div class="log-in-page container-fluid vh-100 d-flex align-items-center justify-content-center">
     <div class="container" style="width: 700px;max-height: 80vh;overflow-y: auto;">
         <div class="logo-page position-absolute top-0 start-0">
-            <a href="{{url_for('home')}}"><img src="{{url_for('static',filename='images/logo.png')}}" alt="logo" width="75"></a>
+            <a href="{{url_for('main.home')}}"><img src="{{url_for('static',filename='images/logo.png')}}" alt="logo" width="75"></a>
         </div>
         <div class="row">
             <div class="col px-5 py-2">
@@ -69,8 +69,8 @@
                     </div>
     
                     {{form.submit(class="btn submit-button")}}
-                    <span class="to-sign" style="margin-top: 20px;">Forget Your Password? <a href="{{url_for('reset_password_request')}}">Reset</a> </span>
-                    <span class="to-sign" style="margin-top: 20px;">Don't Have An Account? <a href="{{url_for('sign_up')}}">Sign Up</a> </span>
+                    <span class="to-sign" style="margin-top: 20px;">Forget Your Password? <a href="{{url_for('users.reset_password_request')}}">Reset</a> </span>
+                    <span class="to-sign" style="margin-top: 20px;">Don't Have An Account? <a href="{{url_for('users.sign_up')}}">Sign Up</a> </span>
     
                 </form>
             </div>
