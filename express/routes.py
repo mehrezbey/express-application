@@ -1,8 +1,9 @@
 from flask import render_template,url_for, flash, redirect , request, abort
 from express import app,bcrypt,db
-from express.forms import SignupForm,LoginForm, UpdateAccountForm,CreatePostForm
+from express.forms import SignupForm,LoginForm, UpdateAccountForm,CreatePostForm , ResetPasswordForm, ResetPasswordRequestForm
 from express.models import User, Post
 from express.utils.profile_picture_utils import save_picture
+from express.utils.email_utils import send_reset_password_email
 from flask_login import login_user , current_user , logout_user , login_required
 
 @app.route("/")
@@ -127,6 +128,36 @@ def user_profile(username):
     posts = Post.query.filter_by(author = user)\
             .order_by(Post.date_posted.desc()).paginate(page=page,per_page = 5)
     return render_template('user_profile.html' , title=username, image = image, posts = posts , user =user)
+
+@app.route("/reset_password",methods=['GET','POST'])
+def reset_password_request():
+    if(current_user.is_authenticated):
+        return redirect(url_for('home'))
+    form = ResetPasswordRequestForm()
+    if(form.validate_on_submit()):
+        user = User.query.filter_by(email = form.email.data).first()
+        send_reset_password_email(user)
+        flash('An email has been sent to reset your password','info')
+        return redirect(url_for("log_in"))
+    return render_template('reset_password_request.html' , title="Reset Password", form = form)
+
+@app.route("/reset_password/<token>",methods=['GET','POST'])
+def reset_password(token):
+    if(current_user.is_authenticated):
+        return redirect(url_for('home'))
+    user = User.verify_token(token)
+    if(user is None):
+        flash("Something went wrong! Pleast try again.","danger")
+        return redirect(url_for("reset_password_request"))
+    form = ResetPasswordForm()
+    if(form.validate_on_submit()):
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        flash(f"Your password has been updated! You are now able to login! ","success")
+        return redirect(url_for('log_in'))
+
+    return render_template('reset_password.html' , title="Reset Password", form = form)
 
 # The 2023_c version is:
 # from <app_name> import app, db
