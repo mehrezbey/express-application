@@ -1,7 +1,9 @@
 from dataclasses import dataclass, field
 from datetime import date, datetime
-from express import db ,login_manager
+from express import db ,login_manager, app
 from flask_login import UserMixin
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -34,6 +36,21 @@ class User(db.Model,UserMixin):
         db.session.add(self)
         db.session.commit()
 
+    def get_reset_token(self, expires_time = 1800):
+        s = Serializer(app.config['SECRET_KEY'],expires_time)
+        return s.dumps({'user_id' :  self.id}).decode('utf-8')
+
+    @staticmethod
+    def verify_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
+
+    
+
 @dataclass
 class Post(db.Model):
     id:int= field(init=False, repr=False)
@@ -51,3 +68,4 @@ class Post(db.Model):
     def create_post(self):
         db.session.add(self)
         db.session.commit()
+# db.create_all()
