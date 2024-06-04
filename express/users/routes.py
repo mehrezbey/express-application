@@ -46,6 +46,7 @@ def logout():
 def account():
     image = url_for('static',filename='images/profile_pictures/'+ current_user.image_file)
     form = UpdateAccountForm()
+    posts_published = Post.posts_published()
     if(form.validate_on_submit()):
         if(form.picture.data):
             picture_file = save_picture(form.picture.data)
@@ -63,17 +64,18 @@ def account():
         form.email.data = current_user.email
         form.birthday.data = current_user.birthday
 
-    return render_template("account.html",title = "Account",image = image,form = form)
+    return render_template("account.html",title = "Account",image = image,form = form, posts_published=posts_published)
 
 @users.route("/user/<string:username>")
 @login_required
 def user_profile(username):
     image = url_for('static',filename='images/profile_pictures/'+ current_user.image_file)
     page = request.args.get('page',default = 1,type = int)
-    user = User.query.filter_by(firstname = username).first_or_404()
+    user = User.query.filter_by(username = username).first_or_404()
+    posts_published = Post.posts_published()
     posts = Post.query.filter_by(author = user)\
             .order_by(Post.date_posted.desc()).paginate(page=page,per_page = 5)
-    return render_template('user_profile.html' , title=username, image = image, posts = posts , user =user)
+    return render_template('user_profile.html' , title=username, image = image, posts = posts , user =user, posts_published=posts_published)
 
 @users.route("/reset_password",methods=['GET','POST'])
 def reset_password_request():

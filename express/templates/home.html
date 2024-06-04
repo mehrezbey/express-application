@@ -59,10 +59,9 @@
                                         <span href="">&nbsp;</span>
                                     </div>
                                     <div class="timeline-body">
-                                        <a class="timeline-header" href="{{url_for('users.user_profile',username = post.author.firstname)}}">
+                                        <a class="timeline-header" href="{{url_for('users.user_profile',username = post.author.username)}}">
                                             <span class="userimage rounded-circle "><img src="{{url_for('static',filename='images/profile_pictures/'+post.author.image_file)}}" alt="user image"></span>
                                             <span class="username">{{post.author.firstname}} {{post.author.lastname}}</span>
-                                            <!-- <span class="pull-right text-muted">1,021,282 Views</span> -->
                                         </a>
                                         <div class="timeline-content my-4">
                                             <h4 class="template-title fw-bold" style="color: var(--main-light-color); text-decoration: underline;">
@@ -72,8 +71,6 @@
                                             <p>{{post.content}}</p>
                                         </div>
                                         <div class="timeline-footer">
-                                            <button type="button" class="btn" ><i class="fa fa-thumbs-up fa-fw fa-lg "></i> Like</button>
-                                            <button type="button" class="btn" ><i class="fa fa-thumbs-down fa-fw fa-lg "></i> Dislike</button>
                                             {% if current_user == post.author %}
                                                 <a type="button" class="btn text-primary" href="{{url_for('posts.edit_post',post_id = post.id)}}" ><i class="fa fa-edit fa-fw fa-lg "></i> Edit</a> 
                                                 <button type="button" class="btn text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa fa-trash fa-fw fa-lg "></i> Delete </button>

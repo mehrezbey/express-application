@@ -1,9 +1,11 @@
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from express import db ,login_manager
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
+import secrets
+import re
 
 
 @login_manager.user_loader
@@ -18,22 +20,31 @@ class User(db.Model,UserMixin):
     id:int= field(init=False, repr=False)
     firstname:str 
     lastname:str 
+    username:str= field(init=False, repr=False)
     email:str 
     image_file:str
     password:str =  field(repr=False)
     birthday:date
+    first_date:date
     # posts:object= field(init=False, repr=False)
 
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(20),  nullable=False)
     lastname = db.Column(db.String(20), nullable=False)
+    username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
     birthday = db.Column(db.DateTime , nullable = True)
+    first_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     posts = db.relationship('Post', backref='author', lazy=True)
 
     def add_user(self):
+        username = re.sub(r'\W+', '', self.firstname).lower()+"_"+ re.sub(r'\W+', '', self.lastname).lower()+"_"+secrets.token_urlsafe(8)
+        user = User.query.filter_by(username = username).first()
+        while(user):
+            username = re.sub(r'\W+', '', self.firstname).lower()+"_"+ re.sub(r'\W+', '', self.lastname).lower()+"_"+secrets.token_urlsafe(8)
+        self.username = username
         db.session.add(self)
         db.session.commit()
 
@@ -69,4 +80,9 @@ class Post(db.Model):
     def create_post(self):
         db.session.add(self)
         db.session.commit()
-# db.create_all()
+
+    @staticmethod
+    def posts_published():
+        posts_number = db.session.query(Post).filter_by(author=current_user).count()
+        return posts_number
+    
