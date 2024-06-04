@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+<!-- Start HeadBlock -->
+{% block headblock%}
+<link rel="stylesheet" href="{{url_for('static',filename='styles/welcome_page_style.css')}}">
+{% endblock headblock%}
+<!-- End HeadBlock -->
+{% block bodyblock%}
+
+<!-- Start BodyBlock -->
+<div class="welcome-page">
+    <div class="mt-5 m-auto">
+        <h1 class="text-danger fw-bold text-center"> Oops! Page not Found!</h1>
+        <h4 class="text-center text-danger">The requested URL was not found. If you entered the URL manually please check your spelling and try again.</h4>
+    </div>
+</div>
+{% endblock bodyblock%}
+<!-- EndBodyBlock -->

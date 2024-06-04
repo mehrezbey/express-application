@@ -22,9 +22,11 @@ def create_app(config_class = Config):
     from express.main.routes import main
     from express.users.routes import users
     from express.posts.routes import posts
+    from express.errors.handlers import errors
     app.register_blueprint(main)
     app.register_blueprint(users)
     app.register_blueprint(posts)
+    app.register_blueprint(errors)
 
     db.init_app(app)
     bcrypt.init_app(app)
