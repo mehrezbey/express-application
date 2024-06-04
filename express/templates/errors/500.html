@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+<!-- Start HeadBlock -->
+{% block headblock%}
+<link rel="stylesheet" href="{{url_for('static',filename='styles/welcome_page_style.css')}}">
+{% endblock headblock%}
+<!-- End HeadBlock -->
+{% block bodyblock%}
+
+<!-- Start BodyBlock -->
+<div class="welcome-page">
+    <div class="mt-5 m-auto">
+        <h1 class="text-danger fw-bold text-center"> Oops! Something went wrong!</h1>
+        <h4 class="text-center text-danger">Please check your internet connexion or try again later.</h4>
+    </div>
+</div>
+{% endblock bodyblock%}
+<!-- EndBodyBlock -->
