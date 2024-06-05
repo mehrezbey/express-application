@@ -1,6 +1,7 @@
+from express import db ,login_manager
+
 from dataclasses import dataclass, field
 from datetime import date, datetime
-from express import db ,login_manager
 from flask_login import UserMixin, current_user
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
@@ -26,7 +27,6 @@ class User(db.Model,UserMixin):
     password:str =  field(repr=False)
     birthday:date
     first_date:date
-    # posts:object= field(init=False, repr=False)
 
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(20),  nullable=False)
@@ -61,8 +61,6 @@ class User(db.Model,UserMixin):
             return None
         return User.query.get(user_id)
 
-    
-
 @dataclass
 class Post(db.Model):
     id:int= field(init=False, repr=False)
@@ -85,4 +83,3 @@ class Post(db.Model):
     def posts_published():
         posts_number = db.session.query(Post).filter_by(author=current_user).count()
         return posts_number
-    

@@ -1,6 +1,5 @@
 from flask import Blueprint,render_template
 
-
 errors = Blueprint("errors",__name__)
 
 @errors.app_errorhandler(404)

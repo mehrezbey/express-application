@@ -1,11 +1,11 @@
-from flask import render_template,url_for, flash, redirect , request, Blueprint
-from flask_login import login_user , current_user , logout_user , login_required
-
 from express import bcrypt,db
 from express.users.forms import SignupForm,LoginForm, UpdateAccountForm, ResetPasswordForm, ResetPasswordRequestForm
 from express.models import User, Post
 from express.utils.profile_picture_utils import save_picture
 from express.utils.email_utils import send_reset_password_email
+
+from flask import render_template,url_for, flash, redirect , request, Blueprint
+from flask_login import login_user , current_user , logout_user , login_required
 
 users = Blueprint('users',__name__)
 
@@ -36,6 +36,7 @@ def log_in():
             flash(f"Please check your email and password!","danger")
 
     return render_template("log_in.html",form = form,title = "Log In")
+
 @users.route("/logout")
 def logout():
     logout_user()
@@ -107,8 +108,3 @@ def reset_password(token):
 
     return render_template('reset_password.html' , title="Reset Password", form = form)
 
-# The 2023_c version is:
-# from <app_name> import app, db
-# app.app_context().push()
-# from <app_name>.models import User
-# user = User.query.first()
