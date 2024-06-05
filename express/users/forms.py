@@ -1,11 +1,10 @@
+from express.models import User
+
 from flask_wtf import FlaskForm
 from wtforms import PasswordField,StringField,EmailField,DateField,SubmitField,BooleanField,FileField
 from wtforms.validators import DataRequired,Length,Email,EqualTo,ValidationError
 from flask_wtf.file import FileField,FileAllowed
 from flask_login import current_user
-
-from express.models import User
-
 
 class SignupForm(FlaskForm):
     first_name = StringField(label="Fist Name",validators=[DataRequired(),Length(min=3,max=20)],name="first-name")

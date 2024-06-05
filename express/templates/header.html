@@ -20,8 +20,8 @@
         </a>
 
       <div class="d-flex align-items-center">
-        <form class="w-100 me-3" role="search">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <form class="w-100 me-3" role="search" action="{{url_for('posts.search')}}">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query">
         </form>
 
         <div class="flex-shrink-0 dropdown">
@@ -31,8 +31,8 @@
           <ul class="dropdown-menu text-small shadow">
             <li><a class="dropdown-item" href="{{url_for('posts.create_post')}}">New post...</a></li>
             <li><a class="dropdown-item" href="{{url_for('users.account')}}">Account</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Contact</a></li>
+            <li><a class="dropdown-item" href="{{url_for('users.user_profile',username = current_user.username)}}">Profile</a></li>
+            <li><a href="mailto:mahrezbey@gmail.com?subject=[From%Express]" class="dropdown-item">Contact</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{url_for('users.logout')}}">Logout</a></li>
           </ul>
