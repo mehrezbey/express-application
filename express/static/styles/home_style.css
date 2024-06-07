@@ -174,3 +174,6 @@ body{
 .posts-pagination .page-link{
     color: var(--main-light-color);
 }
+.timeline-content p{
+    line-height: 2;
+}
