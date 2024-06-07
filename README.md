@@ -18,7 +18,6 @@ Express is a Flask-based web application where users can express their opinions 
 1. **Clone the repository:**
     ```bash
     git clone https://github.com/mehrezbey/express-application.git
-    cd express
     ```
 
 2. **Create and activate a virtual environment:**
